@@ -25,7 +25,7 @@ public class ApplicationConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userRepository.findByUserame(username)
+        return username -> userRepository.findByUserName(username)
                 .map(user -> new
                         org.springframework.security.core.userdetails.User(
                                 user.getUserName(),

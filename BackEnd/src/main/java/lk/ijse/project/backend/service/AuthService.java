@@ -22,7 +22,7 @@ public class AuthService {
     public AuthResponseDto authenticate(AuthDto authDto) {
 
 
-       User user =  userRepository.findByUserame(authDto.getUsername())
+       User user =  userRepository.findByUserName(authDto.getUsername())
                 .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
        if (!passwordEncoder.matches(
                authDto.getPassword(),
@@ -36,7 +36,7 @@ public class AuthService {
     }
 
     public String Register(RegisterDto registerDto) {
-        if (userRepository.findByUserame(registerDto.getUsername()).isPresent()){
+        if (userRepository.findByUserName(registerDto.getUsername()).isPresent()){
             throw new RuntimeException("Username already exists");
         }
 
