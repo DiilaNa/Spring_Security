@@ -1,4 +1,4 @@
-package lk.ijse.project.backend.entuty;
+package lk.ijse.project.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
