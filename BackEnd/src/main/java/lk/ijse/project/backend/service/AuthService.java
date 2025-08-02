@@ -3,6 +3,7 @@ package lk.ijse.project.backend.service;
 import lk.ijse.project.backend.dto.AuthDto;
 import lk.ijse.project.backend.dto.AuthResponseDto;
 import lk.ijse.project.backend.dto.RegisterDto;
+import lk.ijse.project.backend.entity.Role;
 import lk.ijse.project.backend.entity.User;
 import lk.ijse.project.backend.repository.UserRepository;
 import lk.ijse.project.backend.util.JWTUtil;
@@ -22,27 +23,29 @@ public class AuthService {
     public AuthResponseDto authenticate(AuthDto authDto) {
 
 
-       User user =  userRepository.findByUserName(authDto.getUsername())
+       User user =  userRepository.findByUserName(authDto.getUserName())
                 .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
        if (!passwordEncoder.matches(
                authDto.getPassword(),
                user.getPassword()))
+
        {
            throw new BadCredentialsException("Bad credentials");
        }
        //generate token
-       String token = jwtUtil.generateToken(authDto.getUsername());
+       String token = jwtUtil.generateToken(authDto.getUserName());
         return new AuthResponseDto(token);
     }
 
     public String Register(RegisterDto registerDto) {
-        if (userRepository.findByUserName(registerDto.getUsername()).isPresent()){
+        if (userRepository.findByUserName(registerDto.getUserName()).isPresent()){
             throw new RuntimeException("Username already exists");
         }
 
         User user = User.builder()
-                .userName(registerDto.getUsername())
+                .userName(registerDto.getUserName())
                 .password(passwordEncoder.encode(registerDto.getPassword()))
+                .role(Role.valueOf(registerDto.getRole()))
                 .build();
         userRepository.save(user);
         return "User Register SuccessFully";
