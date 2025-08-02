@@ -24,13 +24,13 @@ public class AuthService {
 
 
        User user =  userRepository.findByUserName(authDto.getUserName())
-                .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
+                .orElseThrow(() -> new RuntimeException("Username not found"));
        if (!passwordEncoder.matches(
                authDto.getPassword(),
                user.getPassword()))
 
        {
-           throw new BadCredentialsException("Bad credentials");
+           throw new BadCredentialsException("Invalid credentials");
        }
        //generate token
        String token = jwtUtil.generateToken(authDto.getUserName());

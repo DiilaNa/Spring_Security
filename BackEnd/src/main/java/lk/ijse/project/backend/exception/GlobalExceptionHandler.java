@@ -32,6 +32,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiResponse handleAllException(RuntimeException e){
-        return new ApiResponse(500, "Internal Server Error", null );
+        return new ApiResponse(500, "Internal Server Error", e.getMessage() );
     }
 }

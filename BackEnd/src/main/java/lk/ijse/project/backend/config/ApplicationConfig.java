@@ -30,7 +30,8 @@ public class ApplicationConfig {
                         org.springframework.security.core.userdetails.User(
                                 user.getUserName(),
                                 user.getPassword(),
-                                List.of(new SimpleGrantedAuthority("Role"+user.getRole().name()))
+                                List.of(new SimpleGrantedAuthority(
+                                        "ROLE_"+user.getRole().name()))
                         )).orElseThrow(
                                 () -> new RuntimeException("User Not Found")
                 );
