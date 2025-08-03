@@ -25,7 +25,7 @@ $(document).ready(function () {
             data: JSON.stringify(data),
             success: function (response) {
                 alert("Account created successfully!");
-                window.location.href = '../Sign_In.html';
+                window.location.href = "../Pages/Sign_In.html";
             },
             error: function (xhr) {
                 alert("Sign up failed: " + xhr.responseText);

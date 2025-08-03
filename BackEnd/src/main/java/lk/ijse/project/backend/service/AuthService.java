@@ -22,7 +22,6 @@ public class AuthService {
 
     public AuthResponseDto authenticate(AuthDto authDto) {
 
-
        User user =  userRepository.findByUserName(authDto.getUserName())
                 .orElseThrow(() -> new RuntimeException("Username not found"));
        if (!passwordEncoder.matches(
