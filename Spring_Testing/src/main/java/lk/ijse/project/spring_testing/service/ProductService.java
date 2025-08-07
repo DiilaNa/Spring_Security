@@ -5,7 +5,7 @@ import lk.ijse.project.spring_testing.entity.Product;
 import java.util.List;
 
 public interface ProductService {
-    List<Product> getAllProducts(String name);
+    List<Product> getAllProducts();
     Product getProductById(Long id);
     Product createProduct(Product product);
     Product updateProduct(Product product);
