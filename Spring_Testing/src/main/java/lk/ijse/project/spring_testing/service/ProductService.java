@@ -1,0 +1,13 @@
+package lk.ijse.project.spring_testing.service;
+
+import lk.ijse.project.spring_testing.entity.Product;
+
+import java.util.List;
+
+public interface ProductService {
+    List<Product> getAllProducts(String name);
+    Product getProductById(Long id);
+    Product createProduct(Product product);
+    Product updateProduct(Product product);
+    void deleteProduct(Long id);
+}
