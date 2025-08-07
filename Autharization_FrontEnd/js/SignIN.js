@@ -17,8 +17,10 @@ $(document).ready(function () {
             data: JSON.stringify(loginData),
             success: function (res) {
                 const token = res.data.accessToken;
-                console.log("Login Success. Token:", token);
                 localStorage.setItem("token", token);
+                if (!token){
+                    window.location.href = "../Pages/Sign_In.html"
+                }
 
                 // Delay for safety (optional)
                 setTimeout(() => {
@@ -32,7 +34,6 @@ $(document).ready(function () {
     });
 
     function redirectBasedOnRole(token) {
-        // First check USER role
         $.ajax({
             url: "http://localhost:8080/hello/user",
             method: "GET",
@@ -43,7 +44,6 @@ $(document).ready(function () {
                 window.location.href = "../Pages/UserDashBoard.html";
             },
             error: function () {
-                // Then check ADMIN role
                 $.ajax({
                     url: "http://localhost:8080/hello/admin",
                     method: "GET",
