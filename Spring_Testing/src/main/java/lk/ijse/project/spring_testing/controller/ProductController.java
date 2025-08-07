@@ -14,16 +14,16 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
 
-    @GetMapping
+    @GetMapping("/getAll")
     public ResponseEntity<List<Product>> getAllProducts() {
         return ResponseEntity.ok(productService.getAllProducts());
     }
-    @GetMapping
+    @GetMapping("/getById")
     public ResponseEntity<Product> getProductById(Long id) {
         return ResponseEntity.ok(productService.getProductById(id));
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         return ResponseEntity.ok(productService.createProduct(product));
     }
