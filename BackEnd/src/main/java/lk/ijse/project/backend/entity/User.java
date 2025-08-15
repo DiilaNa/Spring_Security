@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Builder/*Helps to create objects without using the new keyword*/
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
